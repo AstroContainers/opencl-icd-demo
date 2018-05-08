@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+# Default direcotry to store the OpenCL Installable Client Driver vendor files
+DEFAULT="/etc/OpenCL/vendors"
+
+# Tread first argument as input file
+in="${1:-${DEFAULT}}"
+
+# Turn ${in} into absolute path
+if [ x"${in:0:1}" != x"/" ]; then
+	in="${PWD}/${in}"
+fi
+
+# Construct vendor file flags
+if [ -d "$in" ]; then
+	ETC_FLAGS="-v ${in}:${DEFAULT}"
+elif [ -f "$in" ]; then
+	d=$(dirname  "${in}")
+	f=$(basename "${in}")
+	ETC_FLAGS="-v ${d}/$f:${DEFAULT}/$f"
+else
+	>&2 echo "ERROR: Invalid ICD vendor path"
+	exit -1
+fi
+
+# Echo the flags
+echo "${ETC_FLAGS}"
