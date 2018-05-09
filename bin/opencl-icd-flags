@@ -30,7 +30,11 @@ else
 	drvs=$(cat "${in}")
 fi
 for f in ${drvs}; do
-    	DRV_FLAGS="${DRV_FLAGS} -v ${f}:${f}"
+	if [ x"${f:0:1}" != x"/" ]; then
+		f=$(find /lib /usr/lib /usr/local/lib -name "${f}"
+		    2> /dev/null | head -n1)
+	fi
+	DRV_FLAGS="${DRV_FLAGS} -v ${f}:${f}"
 done
 
 # Echo the flags
