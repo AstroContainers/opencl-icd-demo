@@ -25,9 +25,10 @@ then the demo will print
 Known Issues
 ------------
 
-- The demo code can only find OpenCL library if the library is
-  described by an absolute path in "/etc/OpenCL/vendors/*.icd"
-
 - The demo code only prints the platform name.  We should add a
   minimal computation example to make sure that the OpenCL JIT
   compiler works correctly.
+
+- So far the demo only works for the `beignet-opencl-icd` driver.  For
+  other drivers to work, it is important to follow all the
+  dependencies of the OpenCL ICD, which is tricky.
