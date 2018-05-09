@@ -10,7 +10,12 @@ run "as is", no OpenCL platform is available and the demo will print
 
 Nevertheless, when the host OpenCL platform is passed to the container
 by using the `bin/opencl-icd-flags` script, the ICD loader can
-dynamically load the platform.  And the demo will print, e.g.,
+dynamically load the platform.  If the "beignet-opencl-icd" is
+installed,
+
+    sudo apt install beignet-opencl-icd
+
+then the demo will print
 
     $ docker run $(bin/opencl-icd-flags) astrocontainers/opencl-icd-demo
     1 platform is found:
