@@ -3,12 +3,9 @@ on different hosts with different accelerators.
 
 The simple C code "src/demo.c" is linked against a generic OpenCL
 Installable Client Driver (ICD) Loader.  When the Docker container is
-run "as is"
+run "as is", no OpenCL platform is available and the demo will print
 
     $ docker run astrocontainers/opencl-icd-demo
-
-no OpenCL platform is available and the demo will print
-
     Failed to obtain platform IDs
 
 Nevertheless, when the host OpenCL platform is passed to the container
@@ -23,9 +20,9 @@ dynamically load the platform.  And the demo will print, e.g.,
 Known Issues
 ------------
 
-- The `demo` code can only find OpenCL library if it is in absolute
-  path in "/etc/OpenCL/vendors/*.icd"
+- The demo code can only find OpenCL library if the library is
+  described by an absolute path in "/etc/OpenCL/vendors/*.icd"
 
-- The `demo` code only print the platform name.  Should we do a
-  minimal compute to make sure that the OpenCL JIT compiler works
-  correctly.
+- The demo code only prints the platform name.  We should add a
+  minimal computation example to make sure that the OpenCL JIT
+  compiler works correctly.
