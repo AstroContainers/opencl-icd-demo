@@ -23,5 +23,15 @@ else
 	exit -1
 fi
 
+# Construct driver flags
+if [ -d "$in" ]; then
+	drvs=$(cat "${in}"/*.icd)
+else
+	drvs=$(cat "${in}")
+fi
+for f in $drvs; do
+    	DRV_FLAGS="${DRV_FLAGS} -v $f:$f"
+done
+
 # Echo the flags
-echo "${ETC_FLAGS}"
+echo "${ETC_FLAGS}${DRV_FLAGS}"
