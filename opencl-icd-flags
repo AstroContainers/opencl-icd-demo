@@ -12,25 +12,25 @@ if [ x"${in:0:1}" != x"/" ]; then
 fi
 
 # Construct vendor file flags
-if [ -d "$in" ]; then
+if [ -d "${in}" ]; then
 	ETC_FLAGS="-v ${in}:${DEFAULT}"
-elif [ -f "$in" ]; then
+elif [ -f "${in}" ]; then
 	d=$(dirname  "${in}")
 	f=$(basename "${in}")
-	ETC_FLAGS="-v ${d}/$f:${DEFAULT}/$f"
+	ETC_FLAGS="-v ${d}/${f}:${DEFAULT}/${f}"
 else
 	>&2 echo "ERROR: Invalid ICD vendor path"
 	exit -1
 fi
 
 # Construct driver flags
-if [ -d "$in" ]; then
+if [ -d "${in}" ]; then
 	drvs=$(cat "${in}"/*.icd)
 else
 	drvs=$(cat "${in}")
 fi
-for f in $drvs; do
-    	DRV_FLAGS="${DRV_FLAGS} -v $f:$f"
+for f in ${drvs}; do
+    	DRV_FLAGS="${DRV_FLAGS} -v ${f}:${f}"
 done
 
 # Echo the flags
