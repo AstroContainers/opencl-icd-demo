@@ -1,2 +1,2 @@
 docker-image:
-	docker build -t chanchikwan/opencl-demo .
+	docker build -t astrocontainers/opencl-icd-demo .
