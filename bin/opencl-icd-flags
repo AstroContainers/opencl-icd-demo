@@ -31,7 +31,7 @@ else
 fi
 for f in ${drvs}; do
 	if [ x"${f:0:1}" != x"/" ]; then
-		f=$(find /lib /usr/lib /usr/local/lib -name "${f}"
+		f=$(find /lib /usr/lib /usr/local/lib -name "${f}" \
 		    2> /dev/null | head -n1)
 	else
 		d=$(dirname "${f}")
