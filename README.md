@@ -18,3 +18,14 @@ dynamically load the platform.  And the demo will print, e.g.,
     $ docker run $(bin/opencl-icd-flags) astrocontainers/opencl-icd-demo
     1 platform is found:
     	* Intel Gen OCL Driver by Intel: OpenCL 2.0 beignet 1.3
+
+
+Known Issues
+------------
+
+- The `demo` code can only find OpenCL library if it is in absolute
+  path in "/etc/OpenCL/vendors/*.icd"
+
+- The `demo` code only print the platform name.  Should we do a
+  minimal compute to make sure that the OpenCL JIT compiler works
+  correctly.
